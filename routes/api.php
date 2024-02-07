@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\UserController;
 
 /*
@@ -29,6 +30,11 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::get('/books', [BookController::class, 'index']);
     Route::get('/books/{bookId}', [BookController::class, 'show']);
     Route::get('/books/search/{name}', [BookController::class, 'search']);
+
+    Route::post('/cart/add', [CartController::class, 'addToCart']);
+    Route::get('/cart/{userId}', [CartController::class, 'getCart']);
+    Route::put('/cart/update', [CartController::class, 'updateCart']);
+    Route::delete('/cart/remove', [CartController::class, 'removeFromCart']);
 });
 
 

@@ -17,4 +17,9 @@ class Book extends Model
     protected $fillable = [
         'title', 'author', 'price'
     ];
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }
