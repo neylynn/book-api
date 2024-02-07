@@ -28,7 +28,7 @@ Route::controller(UserController::class)->group(function(){
 Route::middleware(['auth:sanctum'])->group( function () {
     Route::get('/books', [BookController::class, 'index']);
     Route::get('/books/{bookId}', [BookController::class, 'show']);
-    Route::get('/books/search', [BookController::class, 'search']);
+    Route::get('/books/search/{name}', [BookController::class, 'search']);
 });
 
 

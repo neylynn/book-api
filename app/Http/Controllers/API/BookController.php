@@ -19,18 +19,14 @@ class BookController extends Controller
         return Book::find($bookId);
     }
 
-    public function search(Request $request)
+    public function search($name)
     {
-        $query = $request->input('query');
-
-        if (!$query) {
-            return response()->json(['error' => 'Query parameter is required.'], 400);
+        $result = Book::where('title', 'LIKE', '%'. $name. '%')->get();
+        if(count($result)){
+            return Response()->json($result);
         }
-
-        $books = Book::where('title', 'like', "%$query%")
-                     ->orWhere('author', 'like', "%$query%")
-                     ->get(['id', 'title', 'author', 'price']);
-
-        return response()->json(['books' => $books]);
+        else{
+            return response()->json(['Result' => 'No Data found'], 404);
+        }
     }
 }
