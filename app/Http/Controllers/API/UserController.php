@@ -45,7 +45,6 @@ class UserController extends Controller
         }
    
         $input = $request->all();
-        Log::debug($input);
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] =  $user->createToken('book-order-api')->plainTextToken;
