@@ -13,7 +13,7 @@ php artisan migrate
 php artisan db:seed  
 
 
-# lunch the server
+# launch the server
 php artisan serve
 
 # api endpoints
