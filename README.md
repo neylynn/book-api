@@ -3,10 +3,14 @@ composer install
 
 # create .env file and generate the application key
 cp .env.example .env
-php artisan key:generate
-php artisan config:cache
-php artisan migrate
-php artisan db:seed
+php artisan key:generate  
+
+php artisan config:cache   
+
+php artisan migrate   
+
+php artisan db:seed  
+
 
 # lunch the server
 php artisan serve
