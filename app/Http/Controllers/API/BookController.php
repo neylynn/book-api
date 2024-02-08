@@ -11,7 +11,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        return Book::all(['id', 'title', 'author', 'price']);
+        return Book::all(['id', 'title', 'author', 'inventory', 'price']);
     }
 
     public function show($bookId)

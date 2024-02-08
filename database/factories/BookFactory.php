@@ -19,6 +19,7 @@ class BookFactory extends Factory
         return [
             'title' => fake()->name(),
             'author' => fake()->name(),
+            'inventory' => '20',
             'price' => '100',
         ];
     }

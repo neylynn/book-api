@@ -17,11 +17,13 @@ class BooksTableSeeder extends Seeder
             [
                 'title' => 'Story of Burma',
                 'author' => 'Mr. John',
+                'inventory' => 10,
                 'price' => 2000,
             ],
             [
                 'title' => 'Tree',
                 'author' => 'Mrs. Maria',
+                'inventory' => 10,
                 'price' => 3000,
             ],
         ];

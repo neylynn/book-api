@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->float('price');
+            $table->decimal('price', 8, 2);
+            $table->integer('inventory')->default(0);
             $table->timestamps();
         });
     }

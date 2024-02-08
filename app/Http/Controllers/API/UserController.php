@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -44,6 +45,7 @@ class UserController extends Controller
         }
    
         $input = $request->all();
+        Log::debug($input);
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] =  $user->createToken('book-order-api')->plainTextToken;
@@ -66,5 +68,25 @@ class UserController extends Controller
         else{ 
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
         } 
+    }
+
+    public function getUserProfile($userId)
+    {
+        $user = User::find($userId);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $orderHistory = $user->orders()->with('books')->get();
+
+        $userProfile = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'order_history' => $orderHistory,
+        ];
+
+        return response()->json(['user_profile' => $userProfile]);
     }
 }
