@@ -2,7 +2,8 @@
 composer install
 
 # create .env file and generate the application key
-cp .env.example .env
+cp .env.example .env   
+
 php artisan key:generate  
 
 php artisan config:cache   
